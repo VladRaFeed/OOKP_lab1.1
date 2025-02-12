@@ -1,5 +1,4 @@
 import $ from "jquery";
-import Notiflix from 'notiflix';
 
 const formWrapper = document.querySelector('.form-wrapper');
 
@@ -20,14 +19,14 @@ class waySearchTask extends physikTask {
     }
 
     solveWaySearchTask() {
-        // if(typeof this.speed === "number" && typeof this.time === "number" && this.speed > 0 && this.time > 0) {
-            console.log("YES")
+        if(typeof this.speed === "number" && typeof this.time === "number" && this.speed > 0 && this.time > 0) {
             const ress = this.speed / this.time;
             return ress;
 
-        // } else {
-            // Notiflix.Notify.success('Please enter a number');
-        // }
+        } else {
+            Notiflix.Notify.warning('Please enter a number larger than 0');
+            return 0;
+        }
     }
 }
 
@@ -38,8 +37,14 @@ class waySearchTask2 extends physikTask {
     }
 
     solveWaySearchTask() {
-        const ress = this.speed * this.time + (0.5 * this.acceleration * (this.time * this.time));
-        return ress;
+        if(typeof this.speed === "number" && typeof this.time === "number" && typeof this.acceleration === "number" && this.speed > 0 && this.time > 0 && this.acceleration > 0) {
+            const ress = this.speed * this.time + (0.5 * this.acceleration * (this.time * this.time));
+            return ress;
+
+        } else {
+            Notiflix.Notify.warning('Please enter a number larger than 0');
+            return 0;
+        }
     }
 }
 
@@ -51,8 +56,14 @@ class densitySearch extends physikTask {
     }
 
     solveDensitySearch() {
-        const ress = this.mass / this.volume;
-        return ress;
+        if(typeof this.mass === "number" && typeof this.volume === "number" && this.mass > 0 && this.volume > 0) {
+            const ress = this.mass / this.volume;
+            return ress;
+
+        } else {
+            Notiflix.Notify.warning('Please enter a number larger than 0');
+            return 0;
+        }
     }
 }
 
@@ -64,8 +75,10 @@ const task1Solve = () => {
     
     const task1 = new waySearchTask(speed, time);
     const ress = task1.solveWaySearchTask();
-    resultText.innerHTML = ``;
-    resultText.innerHTML = `Result is ${ress}`;
+    if(ress !== 0) {
+        resultText.innerHTML = ``;
+        resultText.innerHTML = `Result is ${ress}`;
+    }
 }
 
 const task1Markup = () => {
@@ -97,8 +110,10 @@ const task2Solve = () => {
     
     const task2 = new waySearchTask2(speed, time, acceleration);
     const ress = task2.solveWaySearchTask();
-    resultText.innerHTML = ``;
-    resultText.innerHTML = `Result is ${ress}`;
+    if(ress !== 0) {
+        resultText.innerHTML = ``;
+        resultText.innerHTML = `Result is ${ress}`;
+    }
 }
 
 const task2Markup = () => {
@@ -135,8 +150,10 @@ const task3Solve = () => {
     
     const task3 = new densitySearch(mass, volume);
     const ress = task3.solveDensitySearch();
-    resultText.innerHTML = ``;
-    resultText.innerHTML = `Result is ${ress}`;
+    if(ress !== 0) {
+        resultText.innerHTML = ``;
+        resultText.innerHTML = `Result is ${ress}`;
+    }
 }
 
 const task3Markup = () => {
