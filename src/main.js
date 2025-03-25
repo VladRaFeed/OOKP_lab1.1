@@ -1,7 +1,7 @@
 import $ from "jquery";
 
 const formWrapper = document.querySelector('.form-wrapper');
-
+// asdasdasdasd
 class physikTask {
     constructor(v, t) {
         this.speed = Number(v);
